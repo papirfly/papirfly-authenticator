@@ -7,7 +7,7 @@
 </p>
 <h2 align="center">Papirfly authenticator</h2>
 <p align="center">
-<strong>Authenticate to your Papirfly brand portal from within any secure web app.</strong>
+<strong>Authorize your secure web app with a Papirfly brand portal.</strong>
 <br><br>
 
 [![Maintenance Status][maintenance-image]](#maintenance-status)
