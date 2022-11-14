@@ -1,6 +1,6 @@
 {
     "name": "@papirfly/papirfly-authenticator",
-    "version": "0.0.2",
+    "version": "0.0.4",
     "license": "MIT",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -17,7 +17,8 @@
         "postversion": "git push && git push --tags",
         "test": "karma start karma.conf.js",
         "prepublishOnly": "yarn build",
-        "build": "yarn clean && yarn tsc -p ./src"
+        "build": "yarn clean && yarn tsc -p ./src",
+        "publish_npm": "yarn publish --registry=https://registry.npmjs.org --access public"
     },
     "dependencies": {
         "typescript": "^4.8.2"
