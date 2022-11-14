@@ -218,3 +218,12 @@ export class OAuth2Utils {
         return { challenge: btoa(hash).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""), verifyer: verifyer };
     }
 }
+
+export const authorizeWithAuthorizationCode = (config: oauth.IAuthConfiguration) =>
+    OAuth2Utils.authorizeWithAuthorizationCode(config);
+export const authorizeWithClientCredentials = (config: oauth.IAuthWithCredentialsConfiguration) =>
+    OAuth2Utils.authorizeWithClientCredentials(config);
+export const refresh = (
+    config: oauth.IAuthConfiguration | oauth.IAuthWithCredentialsConfiguration,
+    refreshConfig: oauth.IRefreshConfiguration
+) => OAuth2Utils.refresh(config, refreshConfig);

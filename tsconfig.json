@@ -1,20 +1,31 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "esModuleInterop": true,
-        "target": "es2020",
-        "noImplicitAny": true,
-        "moduleResolution": "node",
-        "types": [
-            "node",
-            "jasmine"
-        ],
+        "baseUrl": "./src",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
         "lib": [
-            "es2018",
-            "DOM"
+            "dom"
         ],
-        "declaration": true,
         "outDir": "dist",
-        "skipLibCheck": true,
-    }
+        "target": "ES6",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": true,
+        "declaration": true,
+        "noEmitHelpers": true,
+        "importHelpers": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "noImplicitAny": true,
+        "noImplicitOverride": true,
+        "strict": true,
+        "strictFunctionTypes": false,
+        "strictPropertyInitialization": false,
+        "forceConsistentCasingInFileNames": true,
+    },
+    "include": [
+        "./src/**/*",
+        "./__tests__/**/*"
+    ]
 }

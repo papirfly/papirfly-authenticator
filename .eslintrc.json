@@ -67,14 +67,7 @@
         "@typescript-eslint/no-use-before-define": "off",
         "@typescript-eslint/no-namespace": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
-        "@typescript-eslint/no-unused-vars": [
-            "error",
-            {
-                "vars": "all",
-                "args": "none",
-                "ignoreRestSiblings": true
-            }
-        ],
+        "@typescript-eslint/no-unused-vars": "off",
         // if we have a setter, there must be a getter
         "accessor-pairs": [
             "error",
