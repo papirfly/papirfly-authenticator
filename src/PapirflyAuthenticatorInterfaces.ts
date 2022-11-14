@@ -1,4 +1,4 @@
-export namespace OAuth2UtilsTypes {
+export namespace PapirflyAuthenticatorInterfaces {
     export interface IServiceConfiguration {
         /**
          * Fully formed url to the OAuth authorization endpoint.

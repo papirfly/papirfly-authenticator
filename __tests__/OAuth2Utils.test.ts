@@ -1,7 +1,7 @@
 import * as sinon from "sinon";
-import { OAuth2Utils, OAuth2UtilsTypes } from "../src";
-describe("OAuth2Utils", () => {
-    const emptyAuthFlowConfig: OAuth2UtilsTypes.IAuthConfiguration = {
+import { PapirflyAuthenticator, PapirflyAuthenticatorInterfaces } from "../src";
+describe("PapirflyAuthenticator", () => {
+    const emptyAuthFlowConfig: PapirflyAuthenticatorInterfaces.IAuthConfiguration = {
         grantType: "authorization_code",
         clientId: "",
         clientSecret: "",
@@ -26,7 +26,7 @@ describe("OAuth2Utils", () => {
         //given
         sinon.stub(window, "open");
         //when
-        await OAuth2Utils.authorizeWithAuthorizationCode({ ...emptyAuthFlowConfig, throwError: error });
+        await PapirflyAuthenticator.authorizeWithAuthorizationCode({ ...emptyAuthFlowConfig, throwError: error });
         //then
         expect(error.callCount).toBe(1);
     });
@@ -38,27 +38,27 @@ describe("OAuth2Utils", () => {
             .stub(window, "open")
             .returns({ location: { replace: sinon.stub() }, closed: true, close: sinon.stub() } as any);
         //when
-        await OAuth2Utils.authorizeWithAuthorizationCode({ ...emptyAuthFlowConfig, throwError: error });
+        await PapirflyAuthenticator.authorizeWithAuthorizationCode({ ...emptyAuthFlowConfig, throwError: error });
         //then
         expect(error.callCount).toBe(1);
     });
 
     it("should try to authorize when refresh fails", async () => {
         //given
-        sinon.stub(OAuth2Utils, "fetchToken").throws();
-        const authorize = sinon.stub(OAuth2Utils, "authorizeWithAuthorizationCode");
+        sinon.stub(PapirflyAuthenticator, "fetchToken").throws();
+        const authorize = sinon.stub(PapirflyAuthenticator, "authorizeWithAuthorizationCode");
         //when
-        await OAuth2Utils.refresh(emptyAuthFlowConfig, { refreshToken: "", grantType: "refresh_token" });
+        await PapirflyAuthenticator.refresh(emptyAuthFlowConfig, { refreshToken: "", grantType: "refresh_token" });
         //then
         expect(authorize.callCount).toBe(1);
     });
 
     it("should try to authorize with credentials when refresh fails", async () => {
         //given
-        sinon.stub(OAuth2Utils, "fetchToken").throws();
-        const authorize = sinon.stub(OAuth2Utils, "authorizeWithClientCredentials");
+        sinon.stub(PapirflyAuthenticator, "fetchToken").throws();
+        const authorize = sinon.stub(PapirflyAuthenticator, "authorizeWithClientCredentials");
         //when
-        await OAuth2Utils.refresh(
+        await PapirflyAuthenticator.refresh(
             {
                 grantType: "client_credentials",
                 clientId: "",
@@ -79,7 +79,7 @@ describe("OAuth2Utils", () => {
         //given
         const expiresIn1Hour = 3600;
         //when
-        const expirationDate = OAuth2Utils.getAccessTokenExpirationDate(expiresIn1Hour);
+        const expirationDate = PapirflyAuthenticator.getAccessTokenExpirationDate(expiresIn1Hour);
         //then
         expect(expirationDate).toBeGreaterThan(Date.now());
     });
@@ -88,15 +88,15 @@ describe("OAuth2Utils", () => {
         //given
         const noExpiry: number | undefined = undefined;
         //when
-        const expirationDate = OAuth2Utils.getAccessTokenExpirationDate(noExpiry);
+        const expirationDate = PapirflyAuthenticator.getAccessTokenExpirationDate(noExpiry);
         //then
         expect(expirationDate).toBeGreaterThan(Date.now());
     });
 
     it("should create random code challenges", async () => {
         //when
-        const challenge1 = await OAuth2Utils.createChallenge();
-        const challenge2 = await OAuth2Utils.createChallenge();
+        const challenge1 = await PapirflyAuthenticator.createChallenge();
+        const challenge2 = await PapirflyAuthenticator.createChallenge();
 
         expect(challenge1).not.toEqual(challenge2);
     });

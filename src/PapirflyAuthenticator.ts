@@ -1,4 +1,4 @@
-import { OAuth2UtilsTypes as oauth } from "./OAuth2UtilsTypes";
+import { PapirflyAuthenticatorInterfaces as oauth } from "./PapirflyAuthenticatorInterfaces";
 
 /**
  * Class containing utilities for authorizing a application towards 3rd party integrations with OAuth2.
@@ -8,7 +8,7 @@ import { OAuth2UtilsTypes as oauth } from "./OAuth2UtilsTypes";
  * Authorization code flow is preferred.
  * @static throwError - Function for any potential errors.
  */
-export class OAuth2Utils {
+export class PapirflyAuthenticator {
     private static challengeMethod = { algorithm: "SHA-256", key: "S256" };
 
     /**
@@ -220,10 +220,10 @@ export class OAuth2Utils {
 }
 
 export const authorizeWithAuthorizationCode = (config: oauth.IAuthConfiguration) =>
-    OAuth2Utils.authorizeWithAuthorizationCode(config);
+    PapirflyAuthenticator.authorizeWithAuthorizationCode(config);
 export const authorizeWithClientCredentials = (config: oauth.IAuthWithCredentialsConfiguration) =>
-    OAuth2Utils.authorizeWithClientCredentials(config);
+    PapirflyAuthenticator.authorizeWithClientCredentials(config);
 export const refresh = (
     config: oauth.IAuthConfiguration | oauth.IAuthWithCredentialsConfiguration,
     refreshConfig: oauth.IRefreshConfiguration
-) => OAuth2Utils.refresh(config, refreshConfig);
+) => PapirflyAuthenticator.refresh(config, refreshConfig);
