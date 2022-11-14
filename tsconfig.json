@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "target": "es2020",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "types": [
+            "node",
+            "jasmine"
+        ],
+        "lib": [
+            "es2018",
+            "DOM"
+        ],
+        "declaration": true,
+        "outDir": "../dist",
+        "skipLibCheck": true,
+    }
+}

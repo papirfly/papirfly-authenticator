@@ -1,0 +1,14 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "dist": true,
+        "libs": true,
+        "node_modules": true,
+        "debug.html": true,
+        ".vscode": true
+    },
+}
