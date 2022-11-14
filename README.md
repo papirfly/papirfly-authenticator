@@ -1,7 +1,7 @@
 <p align="center">
     <picture >
-      <source media="(prefers-color-scheme: dark)" srcset="https://brand.papirfly.com/fr/gallery/34433/images/lowres/00a0679f-ece6-41a0-8039-be5ec0fe6700.png">
       <source media="(prefers-color-scheme: light)" srcset="https://brand.papirfly.com/fr/gallery/34433/images/lowres/24ced107-4a60-45ef-8be5-c14cfe133908.png">
+      <source media="(prefers-color-scheme: dark)" srcset="https://brand.papirfly.com/fr/gallery/34433/images/lowres/00a0679f-ece6-41a0-8039-be5ec0fe6700.png">
       <img alt="Shows the papirfly logo" src="https://brand.papirfly.com/fr/gallery/34433/images/lowres/24ced107-4a60-45ef-8be5-c14cfe133908.png" height=100>
     </picture>
 </p>
