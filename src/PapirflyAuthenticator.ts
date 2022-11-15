@@ -1,12 +1,7 @@
 import { PapirflyAuthenticatorInterfaces as oauth } from "./PapirflyAuthenticatorInterfaces";
 
 /**
- * Class containing utilities for authorizing a application towards 3rd party integrations with OAuth2.
- * * Use `authorizeWithAuthorizationCode` if you need to access user specific files. Will open a pop-up where the user will login.
- * * Use `authorizeWithClientCredentials` if you do not need to access user specific files.
- * * After authorizing you can refresh the access tokens with `refresh`.
- * Authorization code flow is preferred.
- * @static throwError - Function for any potential errors.
+ * Class containing utilities for authorizing a application towards 3rd party integrations with OAuth2
  */
 export class PapirflyAuthenticator {
     private static challengeMethod = { algorithm: "SHA-256", key: "S256" };
