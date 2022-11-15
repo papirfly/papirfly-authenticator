@@ -25,11 +25,11 @@ export namespace PapirflyAuthenticatorInterfaces {
         throwError?: ((error: unknown, config: IBaseAuthConfiguration) => Promise<void>) | undefined;
     }
 
-    interface IBaseAuthGrant {
+    export interface IBaseAuthGrant {
         grantType: OAuthGrantType;
     }
 
-    interface IRedirectConfiguration {
+    export interface IRedirectConfiguration {
         /**
          *  URL the authorization server will redirect the user back to the application a user successfully authorizes an application.
          */
