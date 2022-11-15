@@ -28,7 +28,7 @@
         "publish_internal": "yarn publish --registry=https://npm.pf.papirfly.no/"
     },
     "dependencies": {
-        "typescript": "^4.8.2"
+        "typescript": "^4.8.4"
     },
     "devDependencies": {
         "@types/jasmine": "^4.3.0",
