@@ -12,6 +12,11 @@ export namespace PapirflyAuthenticatorInterfaces {
          * Usually ends with `/oauth/token`
          */
         tokenEndpoint: string;
+
+        /**
+         * Preferred content-type to transfer data
+         */
+        contentType: "form-data" | "x-www-form-urlencoded";
     }
 
     export interface IBaseConfiguration {

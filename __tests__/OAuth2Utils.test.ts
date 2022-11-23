@@ -10,6 +10,7 @@ describe("PapirflyAuthenticator", () => {
         serviceConfiguration: {
             authorizationEndpoint: "",
             tokenEndpoint: "",
+            contentType: "form-data",
         },
         redirectConfiguration: {
             url: "someurl",
@@ -67,6 +68,7 @@ describe("PapirflyAuthenticator", () => {
                 serviceConfiguration: {
                     authorizationEndpoint: "",
                     tokenEndpoint: "",
+                    contentType: "form-data",
                 },
             },
             { refreshToken: "", grantType: "refresh_token" }

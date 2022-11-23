@@ -128,7 +128,7 @@ export class PapirflyAuthenticator {
 
         try {
             const serviceConfiguration = config.serviceConfiguration;
-            const token = await this.fetchToken(serviceConfiguration.tokenEndpoint, body);
+            const token = await this.fetchToken(serviceConfiguration.tokenEndpoint, body, config);
             return {
                 accessToken: token.access_token,
                 refreshToken: token.refresh_token,
@@ -171,14 +171,26 @@ export class PapirflyAuthenticator {
         if (config.clientSecret) body.append("client_secret", config.clientSecret);
         if (verifyer) body.append("code_verifier", verifyer);
 
-        return this.fetchToken(serviceConfiguration.tokenEndpoint, body);
+        return this.fetchToken(serviceConfiguration.tokenEndpoint, body, config);
     }
 
-    static async fetchToken(tokenEndpoint: string, body: FormData) {
-        const response = await fetch(tokenEndpoint, {
-            method: "POST",
-            body: body,
-        });
+    static async fetchToken(tokenEndpoint: string, data: FormData, config: oauth.IBaseConfiguration) {
+        let response: Response;
+        if (config.serviceConfiguration.contentType === "x-www-form-urlencoded") {
+            response = await fetch(tokenEndpoint, {
+                method: "POST",
+                body: new URLSearchParams(data as any).toString(),
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+            });
+        } else {
+            response = await fetch(tokenEndpoint, {
+                method: "POST",
+                body: data,
+            });
+        }
+
         if (response.status !== 200) {
             const errorText = await response.text();
             const errorMessage = `${response.status}: ${errorText})}`;
