@@ -18,6 +18,8 @@ export class PapirflyAuthenticator {
             ["scope", config.scopes.join("+")],
             ["redirect_uri", config.redirectConfiguration.url],
         ];
+        if (config.serviceConfiguration.additionalAuthorizationParams)
+            urlParams.push(...config.serviceConfiguration.additionalAuthorizationParams);
 
         let codeChallenge: oauth.ICodeChallenge | undefined;
         if (config.usePKCE !== false) {
@@ -27,11 +29,7 @@ export class PapirflyAuthenticator {
                 ["code_challenge", codeChallenge.challenge]
             );
         }
-        const encodedUrlParams = urlParams
-            .map(function (p) {
-                return p[0] + "=" + p[1];
-            })
-            .join("&");
+        const encodedUrlParams = this.convertParamsToString(urlParams);
         const serviceConfiguration = config.serviceConfiguration;
         const url = `${serviceConfiguration.authorizationEndpoint}?${encodedUrlParams}`;
         const popup = open(url, "Authorize", "top=100,left=100");
@@ -170,6 +168,8 @@ export class PapirflyAuthenticator {
         if (config.scopes) body.append("scope", config.scopes.join("+"));
         if (config.clientSecret) body.append("client_secret", config.clientSecret);
         if (verifyer) body.append("code_verifier", verifyer);
+        if (serviceConfiguration.additionalAuthorizationParams)
+            serviceConfiguration.additionalAuthorizationParams.forEach((p) => body.append(p[0], p[1]));
 
         return this.fetchToken(serviceConfiguration.tokenEndpoint, body, config);
     }
@@ -223,6 +223,14 @@ export class PapirflyAuthenticator {
         const digest = await crypto.subtle.digest(this.challengeMethod.algorithm, chars);
         const hash = String.fromCharCode.apply(null, Array.from(new Uint8Array(digest)));
         return { challenge: btoa(hash).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""), verifyer: verifyer };
+    }
+
+    private static convertParamsToString(params: string[][]) {
+        return params
+            .map(function (p) {
+                return p[0] + "=" + p[1];
+            })
+            .join("&");
     }
 }
 

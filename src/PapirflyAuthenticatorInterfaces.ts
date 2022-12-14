@@ -7,12 +7,15 @@ export namespace PapirflyAuthenticatorInterfaces {
          */
         authorizationEndpoint: string;
         /**
+         * Additional parameters required for initial authorization
+         */
+        additionalAuthorizationParams?: string[][];
+        /**
          * Fully formed url to the OAuth token exchange endpoint.
          *
          * Usually ends with `/oauth/token`
          */
         tokenEndpoint: string;
-
         /**
          * Preferred content-type to transfer data
          */
